@@ -1,0 +1,47 @@
+import pandas as pd
+import numpy as np
+
+# Define the number of records
+num_customers = 1000
+
+# Create the synthetic dataset
+np.random.seed(42)  # For reproducibility
+
+data = {
+    'Customer ID': [f'CUST{str(i).zfill(4)}' for i in range(1, num_customers + 1)],
+    'Age': np.random.randint(18, 71, num_customers),
+    'Gender': np.random.choice(['Male', 'Female'], num_customers),
+    'Tenure (Years)': np.random.randint(1, 11, num_customers),
+    'Region': np.random.choice(['Nairobi', 'Mombasa', 'Kisumu', 'Nakuru'], num_customers),
+    'Monthly Data Usage (MB)': np.random.randint(500, 10001, num_customers),
+    'Call Duration (Minutes)': np.random.randint(0, 1001, num_customers),
+    'SMS Sent': np.random.randint(0, 501, num_customers),
+    'M-Pesa Transactions': np.random.randint(0, 201, num_customers),
+    'Customer Service Interactions': np.random.randint(0, 11, num_customers),
+    'Subscription Type': np.random.choice(['Prepaid', 'Postpaid'], num_customers),
+    'Churn Indicator': np.random.choice([0, 1], num_customers, p=[0.8, 0.2]),  # 20% churn rate
+    'Last Month Data Usage (MB)': np.random.randint(500, 10001, num_customers),
+    'Second Last Month Data Usage (MB)': np.random.randint(500, 10001, num_customers),
+    'Third Last Month Data Usage (MB)': np.random.randint(500, 10001, num_customers),
+    'Last Month Call Duration (Minutes)': np.random.randint(0, 1001, num_customers),
+    'Second Last Month Call Duration (Minutes)': np.random.randint(0, 1001, num_customers),
+    'Third Last Month Call Duration (Minutes)': np.random.randint(0, 1001, num_customers),
+    'Last Month SMS Sent': np.random.randint(0, 501, num_customers),
+    'Second Last Month SMS Sent': np.random.randint(0, 501, num_customers),
+    'Third Last Month SMS Sent': np.random.randint(0, 501, num_customers),
+    'Promotions': np.random.randint(0, 6, num_customers),  # Number of promotions received
+    'Payment Method': np.random.choice(['Credit Card', 'Mobile Money', 'Debit Card', 'Cash'], num_customers),
+    'Data Rate per MB': 0.05,  # Assuming a fixed rate
+    'Call Rate per Minute': 0.02,  # Assuming a fixed rate
+    'SMS Rate per Message': 0.01,  # Assuming a fixed rate
+    'Churn History': np.random.randint(0, 2, num_customers)  # Number of times the customer has churned
+}
+
+# Step 3: Create DataFrame
+Safaricom_churn_data = pd.DataFrame(data)
+
+# Step 4: Save the DataFrame to a CSV file
+Safaricom_churn_data.to_csv('Safaricom_churn_data.csv', index=False)
+
+# Display the first few rows of the dataset
+Safaricom_churn_data.head()
